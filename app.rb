@@ -7,7 +7,7 @@ DOG = Dogapi::Client.new(ENV.fetch('DATADOG_API_KEY'))
 
 def send_metric(time:, metric:, type:, value:, tags: [])
   metric = METRIC_NAMESPACE + metric
-  puts({time: time, metric: metric, type: type, value: value, tags: tags}.to_json)
+  warn({time: time, metric: metric, type: type, value: value, tags: tags}.to_json)
   DOG.emit_point(metric, value, timestamp: time, type: type, tags: tags)
 end
 
